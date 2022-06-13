@@ -42,10 +42,10 @@
                         <div class="col-md-8 text-center">
                             <div class="card-body">
                                 <h5 th:text="*{titulo}" class="card-title"></h5>
-                                <p th:text="*{diretor}" class="card-text"></p>
-                                <p th:text="*{anoLancamento}" class="card-text"></p>
-                                <p th:text="*{sinopse}" class="card-text"></p>
-                                <p th:text="*{avaliacao}" class="card-text"><img
+                                <p th:text=" 'Direção: ' + *{diretor}" class="card-text"></p>
+                                <p th:text="'Lançamento: ' + *{anoLancamento}" class="card-text"></p>
+                                <p th:text="'Sinopse: ' + *{sinopse}" class="card-text"></p>
+                                <p th:text="'Avaliação: ' + *{avaliacao}" class="card-text"><img
                                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABuklEQVRIidWUv2tTURiGn/dezKpTpXZREUSaGyU/2kkEQbBa3ZpGEBwEXR0d/Ac6iqObi1CHDg6ig46SJhHaGB1dClpQwUUQvPd10Mak3iQ3NIJ+cODwne+8zzkv3znwL4U3S5E3yvlx9gRjEaQaAbW/B4AqcMVGEwe4U5oHjgFHeVOuTBxArN/WxNltygSwCZCXuglR8+pSODEAndIZ0ExPZpoT705PDoDSLMlkkwC8WbmBfA/IZQOOjO/Yd1RorXTbze25MoofYR3eo/gWDqoqrL+EHosUrTfZRwX0dA/iLyAs74j3AQB0vPWRfGMB+zaQjCFspBXeHjmnqL7dpzlwR6d4liR8CJ4aIf4Zc1WF5pO0xYFdpNlXz8GPR4gDrA0SHwqwEWYhA+DCsL9p8Dt4PVdCHMoAmKZdLI4PILn4Z86rP8fuCFNqRwJY7Jl/wbqpqLWsqLWMXQU+dVflgYBU77xRmCLIvf91gGck4XWdrG/11bTnD0J8H7gEJASa0WzjQ7YbBLlF4BvoFvnm+d3iAIrq24qalxHXgK/E6Q2RDjD7wZGixl0Jp9bsgPLNB+BT4APD6v7f+AEHuIEeeEQJCwAAAABJRU5ErkJggg==">
                                 </p>
                                 <a th:href="@{'/deletar/'+ *{id}}" class="btn btn-danger">Deletar</a>
