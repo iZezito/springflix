@@ -2,13 +2,16 @@ package com.example.demo.service;
 
 import com.example.demo.model.Usuario;
 import com.example.demo.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     public UserService(UserRepository userRepository){
@@ -35,5 +38,16 @@ public class UserService {
     }
     public void deleteById(Long id){
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuario> optional = userRepository.findUsuarioByUsername(username);
+
+        if(optional.isPresent()) {
+            return optional.get();
+        }
+
+        throw new UsernameNotFoundException("User not found");
     }
 }
