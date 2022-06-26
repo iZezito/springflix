@@ -25,7 +25,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.
+                authorizeRequests()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/error").permitAll()
+                .antMatchers("/login", "/cadastro", "/salvarUser").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .defaultSuccessUrl("/", true)
+                .and()
+                .logout()
+                .logoutSuccessUrl("/");
+        return http.build();
+    }
 
+
+        /*
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -44,7 +59,9 @@ public class SecurityConfig {
                 .permitAll();
 
         return http.build();
-    }
+
+         */
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.model.Filme;
 import com.example.demo.model.Usuario;
 import com.example.demo.service.FilmeService;
+import com.example.demo.service.UserService;
 import org.jboss.jandex.Main;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,12 @@ import java.util.List;
 public class MainController {
 
     public FilmeService filmeService;
+    public UserService userService;
 
-    public MainController(FilmeService filmeService){
+    public MainController(FilmeService filmeService, UserService userService){
         this.filmeService = filmeService;
+        this.userService = userService;
+
     }
 
     @GetMapping(value = {"/", "/home"})
@@ -59,5 +63,27 @@ public class MainController {
         Filme f = filmeService.findById(id);
         model.addAttribute("filme", f);
         return "cadastrar";
+    }
+
+    @GetMapping("/cadastro")
+    public String doCadastro(Model model){
+        Usuario usuario = new Usuario();
+        model.addAttribute("usuario", usuario);
+
+        return "cadastrarcliente";
+    }
+
+
+    @PostMapping("/salvarUser")
+    public String doASave(@ModelAttribute @Valid Usuario usuario, Errors errors){
+
+
+        if(errors.hasErrors()){
+            return "cadastrarcliente";
+
+        }else{
+            userService.insert(usuario);
+            return "redirect:/login";
+        }
     }
 }

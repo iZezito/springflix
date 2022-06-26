@@ -27,12 +27,11 @@ public class Usuario implements UserDetails {
     String username;
     @NotBlank
     String password;
-    @NotBlank
     Boolean admin;
-    Boolean accountExpired;
-    Boolean accountLocked;
-    Boolean credentialsExpired;
-    Boolean enabled;
+    Boolean accountExpired = false;
+    Boolean accountLocked = false;
+    Boolean credentialsExpired = false;
+    Boolean enabled = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
